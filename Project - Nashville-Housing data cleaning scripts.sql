@@ -1,5 +1,3 @@
-
-
 -----------------------------------------------------Nashville housing Project-----------------------------------------------------------------
 -- # This data shows a bunch of rows of transactions identified by UniqueID, ParcelID, Saledate, PropertyAddress, OwnerAddress and so many more identifiers.
 	-- let's see the overview of the table, clean it and make it easier and nicer to see and use.
@@ -14,10 +12,7 @@ select * from PortfolioProject..NashvilleHousing
 --2) standardize date format
 
 	--This is because the Saledate column in the table is in "datetime" type rather than just "date" so the time part is really irrelevant and ugly to work with
-    --So either modify the table column 'Saledate' from datetime to date, under the DATABASE>PortfolioProject>TABLES>NashvilleHousing in the "objects explorer" menu or
-    --convert it to date with: 
-	    --update NashvilleHousing
-	    --set saledate = convert(date,saledate)
+    --So modify the table column 'Saledate' from datetime to date, under the DATABASE>PortfolioProject>TABLES>NashvilleHousing in the "objects explorer" menu
 
 
 
@@ -150,7 +145,7 @@ from PortfolioProject..NashvilleHousing
 
 
 --6) remove duplicates
---#There are rows containing the same data in every column except for the uniqueID. It's not impossible that the data is for two different genuine transactions but it's
+	--#There are rows containing the same data in every column except for the uniqueID. It's not impossible that the data is for two different genuine transactions but it's
 	--highly likely that a different uniqueID is given for the same transaction and recorded twice. Those duplicated rows are removed as follows.
 	--it's better to use CTE here since it is easier (given that the parcelID, Saledate, PropertyAddress... are similar)
 
@@ -170,7 +165,7 @@ where RowNumber >1
 
 
 --7) delete unused columns
---# The PropertyAddress and OwnerAddress columns are useless now that they are split into individual columns, as shown above. The TaxDistrict column somehow looked useless
+	--# The PropertyAddress and OwnerAddress columns are useless now that they are split into individual columns, as shown above. The TaxDistrict column somehow looked useless
 	--to me
 
 alter table PortfolioProject..NashvilleHousing
