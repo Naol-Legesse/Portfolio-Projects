@@ -212,3 +212,4 @@ from PortfolioProject..CovidDeaths
 where continent is not null
 group by date
 --order by date asc
+
